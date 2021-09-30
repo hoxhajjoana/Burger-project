@@ -49,6 +49,12 @@ body {
     cursor: pointer;
 }
 
+.fin-btn{
+    position: absolute;
+    bottom: 5rem;
+    right: 5rem;
+}
+
 .add-bur{
 
     width: 100%;
@@ -56,19 +62,22 @@ body {
 
 .cho-ing{
 
+    float: left;
     width: 50%;
-    min-width: 50vh;
+    min-width: 200px;
     text-align: center;
 
 }
 
 .fin-bur{
 
+    float: left;
     width: 50%;
-    min-width: 50vh;
+    min-width: 200px;
     text-align: center;
 
 }
+
 
 .flex {
 
@@ -93,4 +102,60 @@ body {
 .patty, .veggie, .sauce {
     
     padding: 2%;
+}
+
+.top-bun{
+
+    border-radius: 150% 150% 10% 10%;
+}
+
+.bottom-bun{
+    
+    border-radius: 10% 10% 150% 150%;
+}
+
+.bun {
+    
+    border: solid 0.15rem rgb(248, 175, 85);
+    width: 60%;
+    height: 4rem;
+    margin: 2rem auto 2rem auto;
+    background-color: rgb(247, 198, 139);
+}
+
+.tomato {
+    border: solid 0.15rem rgb(211, 2, 2);
+    border-radius: 1rem;
+    width: 50%;
+    height: 1.5rem;
+    margin: 1rem auto 1rem auto;
+    background-color: rgb(247, 107, 107);
+
+}
+
+.lettuce {
+    border: dashed 0.15rem rgb(85, 211, 2);
+    border-radius: 1rem;
+    width: 55%;
+    height: 1rem;
+    margin: 1rem auto 1rem auto;
+    background-color: rgb(157, 250, 164);
+}
+
+.pickles {
+    border: dotted 0.15rem rgb(42, 102, 2);
+    border-radius: 1rem;
+    width: 15%;
+    height: 1rem;
+    margin: 1rem auto 1rem auto;
+    background-color: rgb(0, 180, 15);
+}
+
+.Pickles {
+    border: dotted 0.15rem rgb(42, 102, 2);
+    border-radius: 1rem;
+    width: 15%;
+    height: 1rem;
+    margin: 1rem auto 1rem auto;
+    background-color: rgb(0, 180, 15);
 }

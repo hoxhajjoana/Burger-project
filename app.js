@@ -2,7 +2,7 @@
 
 class Burger{
 
-    static maxIngredient = {patty:1, veggie:4, sauce:2};
+    static maxIngredient = {patty:1, veggie:5, sauce:2};
 
     constructor(){
         this.ingredients = [];
@@ -184,9 +184,7 @@ function addBurger(burger, fav){
 
 }
 
-function addMeats(){
 
-}
 
 function initializeIndex() {
     //function to set up the main page
@@ -194,37 +192,46 @@ function initializeIndex() {
     console.log("index initialized");
 
     const chooseBurgerPart = document.querySelector('.cho-ing');
-    
-    
+
+
     for (let item of ingSect){
-        debugger;
-        addIngredientSection(item, chooseBurgerPart);
+
+        //function to add every ingredient section (saved in ingSect)
+        addIngredientSection(item, chooseBurgerPart); 
+
     }
+
+    //const showBurgerPart = document.querySelector('.fin-bur');
+
 
 
     
 }
 
+
+
 function addIngredientSection(obj, section){
     
-    const htmlSection = document.createElement('div');
+    const htmlSection = document.createElement('div'); //create a div for every type of ingredient
 
-    debugger;
-
-    htmlSection.classList.add(obj.name);
+    htmlSection.classList.add(obj.name);  //adding a class to the type, in case of modifying the style 
 
 
+    htmlSection.classList.add('ingredients');
     htmlSection.innerText = capitalize(obj.name);
 
     htmlSection.innerHTML += "<br>";
     
-    debugger;
+    for (let ingredient of obj.value){ //create the button to add each ingredient
 
-    for (let ingredient of obj.value){
         const ingredientButton = document.createElement('button');
 
-        ingredientButton.classList.add('ingredients');
+        ingredientButton.setAttribute("onclick", `addTOBURGER('${ingredient.name.toLowerCase.split(" ")[0]}')`);
+
+        debugger;
+
         ingredientButton.classList.add('pg-btn');
+        ingredientButton.classList.add('margin');
         ingredientButton.innerText = ingredient.name + " (" + ingredient.price + "tl)";
 
         htmlSection.appendChild(ingredientButton);
@@ -233,6 +240,19 @@ function addIngredientSection(obj, section){
     section.appendChild(htmlSection);
 
 }
+
+function addTOBURGER(item){
+
+    bun = document.querySelector('.top-bun');
+
+    ingredient = document.createElement('div');
+    ingredient.classList.add(item);
+
+    debugger;
+
+    bun.parentNode.insertBefore(ingredient, bun.nextSibling);
+}
+
 
 function capitalize(str){
 
