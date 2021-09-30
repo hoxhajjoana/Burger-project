@@ -1,8 +1,18 @@
 // CLASSES
 
+class Item{
+
+    constructor(name, type, price){
+        this.name = name;
+        this.type = type;
+        this.price = price;
+    }
+}
+
+
 class Burger{
 
-    static maxIngredient = {patty:1, veggie:5, sauce:2};
+    static maxIngredient = {'patty':1, 'veggie':5, 'sauce':2, 'bun':1};
 
     constructor(){
         this.ingredients = [];
@@ -10,20 +20,27 @@ class Burger{
         this.patty = 0;
         this.veggie = 0;
         this.sauce = 0;
+        this.bun = 0;
+        this.favorite = false;
         this.addIngredient(new Item('white', 'bun', 5.0));
-        this.bun = 1;
+        
     }
 
     addIngredient(item){
 
-        if(this[item.type] < this.maxIngredient[item.type]){
+        console.log('Trying to add '+ item.name);
+
+        if(this[item.type] < Burger.maxIngredient[item.type]){
 
             this.ingredients.push(item);
             this.price += item.price;
             this.adjustIngredients(item.type, true);
+            console.log("succeeded");
+            return true;
         }
         
-        
+        console.log("failed");
+        return false;
     }
 
     removeIngredient(item){
@@ -40,7 +57,7 @@ class Burger{
         this.adjustIngredient(item.type, false)
     }
 
-    adjustIngredient(type, action){
+    adjustIngredients(type, action){
 
         if(action){
             
@@ -53,16 +70,8 @@ class Burger{
 
 }
 
-class Item{
 
-    constructor(name, type, price){
-        this.name = name;
-        this.type = type;
-        this.price = price;
-    }
-}
-
-
+var burger = new Burger();
 //Variables
 
 const patties=[];
@@ -184,8 +193,6 @@ function addBurger(burger, fav){
 
 }
 
-
-
 function initializeIndex() {
     //function to set up the main page
 
@@ -200,12 +207,9 @@ function initializeIndex() {
         addIngredientSection(item, chooseBurgerPart); 
 
     }
-
     //const showBurgerPart = document.querySelector('.fin-bur');
 
 
-
-    
 }
 
 
@@ -226,7 +230,14 @@ function addIngredientSection(obj, section){
 
         const ingredientButton = document.createElement('button');
 
-        ingredientButton.setAttribute("onclick", `addTOBURGER('${ingredient.name.toLowerCase().split(" ")[0]}')`);
+        ingredientButton.onclick = function() {
+                
+                if(burger.addIngredient(ingredient)){
+                    addTOBURGER(ingredient.name.toLowerCase().split(" ")[0]); 
+                }
+            };
+
+        
 
         debugger;
 
