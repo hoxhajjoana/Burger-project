@@ -144,11 +144,11 @@ const past = document.querySelector(".past");
 const index = document.querySelector(".index");
 
 past.addEventListener("click", function(){
-    changePage('./past_burgers.html')
+    changePage('./past_burgers.html');
 
 });
 index.addEventListener("click", function(){
-    changePage('./index.html')
+    changePage('./index.html');
 
 });
 
@@ -187,8 +187,35 @@ function initializeIndex() {
         addIngredientSection(item, chooseBurgerPart); 
 
     }
-    //const showBurgerPart = document.querySelector('.fin-bur');
+
+    updatePrice();
+    
+    const finishButton = document.querySelector('.fin-btn');
+    finishButton.onclick = function(){
+
+        if(this.classList.contains('error')){
+            this.classList.remove('error');
+        }
+
+        if(checkBurger(burger)){
+            addBurgerToLocalStorage(burger);
+            changePage('./index.html');
+        }
+        else{
+            this.classList.add('error');
+        }
+    };
+
 }
+
+function checkBurger(burger){
+    //function to check if burger is not too much of an abomination
+    if(burger.patty === Burger.maxIngredient['patty'] && burger.veggie <= Burger.maxIngredient['veggie'] && burger.sauce <= Burger.maxIngredient['sauce']){
+        return true;
+    }
+    return false;
+}
+
 
 function addIngredientSection(obj, section){
     
@@ -212,8 +239,6 @@ function addIngredientSection(obj, section){
                 addTOBURGER(ingredient); 
             }
         };
-
-        debugger;
 
         ingredientButton.classList.add('pg-btn');
         ingredientButton.classList.add('margin');
@@ -241,8 +266,18 @@ function addTOBURGER(item){
         
         burger.removeIngredient(item);
         this.remove();
+        updatePrice();
 
     }
+
+    updatePrice();
+}
+
+function updatePrice(){
+
+    const priceDiv = document.querySelector('.price');
+
+    priceDiv.innerText = burger.price + " TL";
 }
 
 
@@ -257,5 +292,21 @@ function initializePastBurgers() {
     //function to set up the past burgers page
 
     console.log('past burgers initialized');
+
+}
+
+function addBurgerToLocalStorage(burger){
+    
+    let burgers;
+
+    if(localStorage.getItem('burgers') === null){
+        burgers = [];
+    }
+    else{
+        burgers = JSON.parse(localStorage.getItem('burgers'));
+    }
+
+    burgers.push(burger);
+    localStorage.setItem('burgers', JSON.stringify(burgers));
 
 }

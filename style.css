@@ -318,3 +318,13 @@ body {
     background-color: rgb(255, 247, 0);
 
 }
+
+.error {
+    background-color: orangered;
+}
+
+.price{
+    float: right;
+    padding: 1%;
+    margin: 1%;
+}
