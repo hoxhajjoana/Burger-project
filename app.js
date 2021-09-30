@@ -2,19 +2,28 @@
 
 class Burger{
 
+    static maxIngredient = {patty:1, veggie:4, sauce:2};
+
     constructor(){
         this.ingredients = [];
         this.price = 0;
-        this.meat = 0;
+        this.patty = 0;
         this.veggie = 0;
         this.sauce = 0;
-        this.addIngredient(new Item('white', 'bun', 5.0))
+        this.addIngredient(new Item('white', 'bun', 5.0));
+        this.bun = 1;
     }
 
     addIngredient(item){
-        this.ingredients.push(item);
-        this.price += item.price;
-        this.adjustIngredients(item.type, true);
+
+        if(this[item.type] < this.maxIngredient[item.type]){
+
+            this.ingredients.push(item);
+            this.price += item.price;
+            this.adjustIngredients(item.type, true);
+        }
+        
+        
     }
 
     removeIngredient(item){
@@ -47,26 +56,77 @@ class Burger{
 class Item{
 
     constructor(name, type, price){
-        this.ingredient = name;
+        this.name = name;
         this.type = type;
         this.price = price;
     }
 }
 
 
+//Variables
+
+const patties=[];
+
+let chicken = new Item("Chicken Patty", 'patty', 7);
+let beef = new Item("Beef Patty", 'patty', 10);
+let meatball = new Item("Meatballs instead of patty", 'patty', 12);
+let pork = new Item("Pork Patty", 'patty', 10);
+let veg = new Item("Vegan Patty", 'patty', 15); //u shouldnt be a vegan thats why its more expensive >:(
+
+patties.push(chicken);
+patties.push(beef);
+patties.push(meatball);
+patties.push(pork);
+patties.push(veg);
+
+const items = [];
+
+let tomato = new Item("Tomato", 'veggie', 1);
+let lettuce = new Item("Lettuce", 'veggie', 1);
+let pickles = new Item("Pickles", 'veggie', 1);
+let cheese = new Item("Cheese", 'veggie', 2);
+let onions = new Item("Onion", 'veggie', 1);
+let ham = new Item("Ham", 'veggie', 3);
+let bacon = new Item("Bacon", 'veggie', 3);
+let vCheese = new Item("Vegan Cheese", 'veggie', 5);
+let egg = new Item("Egg", 'veggie', 2.5);
+let jalapeno = new Item("Jalapeno pepper", 'veggie', 2);
+
+items.push(tomato);
+items.push(lettuce);
+items.push(pickles);
+items.push(cheese);
+items.push(onions);
+items.push(ham);
+items.push(bacon);
+items.push(vCheese);
+items.push(egg);
+items.push(jalapeno);
+
+const sauces = [];
+
+let mayo = new Item("Mayonnaise", 'sauce', 0.5);
+let ketchup = new Item("Ketchup", 'sauce', 0.5);
+let bbq = new Item("Barbeque", 'sauce', 1);
+let hot = new Item("Hot Sauce", 'sauce', 1);
+let mustard = new Item("Mustard", 'sauce', 1);
+
+sauces.push(mayo);
+sauces.push(ketchup);
+sauces.push(bbq);
+sauces.push(hot);
+sauces.push(mustard);
+
+const ingSect = [{name: 'patty', value: patties}, {name: 'veggie' , value: items}, {name: 'sauce', value: sauces}];
 
 
 // EVENT LISTENERS
 
 //to change pages
-const fav = document.querySelector(".fav");
 const past = document.querySelector(".past");
 const index = document.querySelector(".index");
 
-fav.addEventListener("click", function(){
-    changePage('./favorites.html')
 
-});
 past.addEventListener("click", function(){
     changePage('./past_burgers.html')
 
@@ -77,12 +137,14 @@ index.addEventListener("click", function(){
 });
 
 ///test
-const dicka = document.querySelector('.add-btn');
+const add = document.querySelector('.add-btn');
+const ing = document.querySelector('.add-bur');
 
-dicka.addEventListener('click', function(){
+add.addEventListener('click', function(){
     
-    dicka.parentElement.classList.add('hidden')
-});
+    add.parentElement.classList.add('hidden');
+    ing.classList.remove('hidden');
+}); 
 
 
 
@@ -100,7 +162,7 @@ function checkBurger(burger){
 
     //function to check if burger is not too much of an abomination
 
-    if(burger.meat === 1 && burger.veggie <= 4 && burger.sauce <=2){
+    if(burger.patty === Burger.maxIngredient[patty] && burger.veggie <= Burger.maxIngredient[veggie] && burger.sauce <= Burger.maxIngredient[sauce]){
         return true;
     }
     return false;
@@ -122,12 +184,60 @@ function addBurger(burger, fav){
 
 }
 
+function addMeats(){
+
+}
+
 function initializeIndex() {
     //function to set up the main page
 
     console.log("index initialized");
 
+    const chooseBurgerPart = document.querySelector('.cho-ing');
     
+    
+    for (let item of ingSect){
+        debugger;
+        addIngredientSection(item, chooseBurgerPart);
+    }
+
+
+    
+}
+
+function addIngredientSection(obj, section){
+    
+    const htmlSection = document.createElement('div');
+
+    debugger;
+
+    htmlSection.classList.add(obj.name);
+
+
+    htmlSection.innerText = capitalize(obj.name);
+
+    htmlSection.innerHTML += "<br>";
+    
+    debugger;
+
+    for (let ingredient of obj.value){
+        const ingredientButton = document.createElement('button');
+
+        ingredientButton.classList.add('ingredients');
+        ingredientButton.classList.add('pg-btn');
+        ingredientButton.innerText = ingredient.name + " (" + ingredient.price + "tl)";
+
+        htmlSection.appendChild(ingredientButton);
+    }
+
+    section.appendChild(htmlSection);
+
+}
+
+function capitalize(str){
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
+
 }
 
 function initializePastBurgers() {
@@ -135,13 +245,5 @@ function initializePastBurgers() {
     //function to set up the past burgers page
 
     console.log('past burgers initialized');
-
-}
-
-function initializeFavorites(){
-    
-    //function to set up the favorite burgers page
-
-    console.log("initialized favorites");
 
 }
