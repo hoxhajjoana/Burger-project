@@ -104,6 +104,10 @@ body {
     padding: 2%;
 }
 
+.ing:hover{
+    background-color:orangered;
+}
+
 .top-bun{
 
     border-radius: 150% 150% 10% 10%;

@@ -1,5 +1,6 @@
 // CLASSES
 
+
 class Item{
 
     constructor(name, type, price){
@@ -8,7 +9,6 @@ class Item{
         this.price = price;
     }
 }
-
 
 class Burger{
 
@@ -44,6 +44,8 @@ class Burger{
     }
 
     removeIngredient(item){
+
+        console.log('Trying to remove '+ item.name);
         
         for(let i = 0; i < this.ingredients.length; i++) {
             
@@ -53,8 +55,9 @@ class Burger{
             }
         }
 
-        this.price -=item.price;
-        this.adjustIngredient(item.type, false)
+        this.price -= item.price;
+        this.adjustIngredients(item.type, false);
+        debugger;
     }
 
     adjustIngredients(type, action){
@@ -71,8 +74,11 @@ class Burger{
 }
 
 
+
+//VARIABLES
+
+
 var burger = new Burger();
-//Variables
 
 const patties=[];
 
@@ -129,12 +135,13 @@ sauces.push(mustard);
 const ingSect = [{name: 'patty', value: patties}, {name: 'veggie' , value: items}, {name: 'sauce', value: sauces}];
 
 
+
 // EVENT LISTENERS
+
 
 //to change pages
 const past = document.querySelector(".past");
 const index = document.querySelector(".index");
-
 
 past.addEventListener("click", function(){
     changePage('./past_burgers.html')
@@ -145,7 +152,6 @@ index.addEventListener("click", function(){
 
 });
 
-///test
 const add = document.querySelector('.add-btn');
 const ing = document.querySelector('.add-bur');
 
@@ -157,8 +163,8 @@ add.addEventListener('click', function(){
 
 
 
-
 // FUNCTIONS
+
 
 function changePage(newpage){
 
@@ -167,39 +173,13 @@ function changePage(newpage){
 
 }
 
-function checkBurger(burger){
-
-    //function to check if burger is not too much of an abomination
-
-    if(burger.patty === Burger.maxIngredient[patty] && burger.veggie <= Burger.maxIngredient[veggie] && burger.sauce <= Burger.maxIngredient[sauce]){
-        return true;
-    }
-    return false;
-
-}
-
-function addBurger(burger, fav){
-
-    //function to add the burger in the past burgers list/page
-
-    if(checkBurger(burger)){
-
-        //u no dumdum
-
-    }
-    else{
-        //u dumdum
-    }
-
-}
-
 function initializeIndex() {
+
     //function to set up the main page
 
     console.log("index initialized");
 
     const chooseBurgerPart = document.querySelector('.cho-ing');
-
 
     for (let item of ingSect){
 
@@ -208,11 +188,7 @@ function initializeIndex() {
 
     }
     //const showBurgerPart = document.querySelector('.fin-bur');
-
-
 }
-
-
 
 function addIngredientSection(obj, section){
     
@@ -232,12 +208,10 @@ function addIngredientSection(obj, section){
 
         ingredientButton.onclick = function() {
                 
-                if(burger.addIngredient(ingredient)){
-                    addTOBURGER(ingredient.name.toLowerCase().split(" ")[0]); 
-                }
-            };
-
-        
+            if(burger.addIngredient(ingredient)){
+                addTOBURGER(ingredient); 
+            }
+        };
 
         debugger;
 
@@ -257,11 +231,18 @@ function addTOBURGER(item){
     bun = document.querySelector('.top-bun');
 
     ingredient = document.createElement('div');
-    ingredient.classList.add(item);
 
-    debugger;
+    ingredient.classList.add(item.name.toLowerCase().split(" ")[0]);
+    ingredient.classList.add('ing');    
 
     bun.parentNode.insertBefore(ingredient, bun.nextSibling);
+
+    ingredient.onclick = function(){
+        
+        burger.removeIngredient(item);
+        this.remove();
+
+    }
 }
 
 
