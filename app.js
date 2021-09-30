@@ -71,7 +71,7 @@ let chicken = new Item("Chicken Patty", 'patty', 7);
 let beef = new Item("Beef Patty", 'patty', 10);
 let meatball = new Item("Meatballs instead of patty", 'patty', 12);
 let pork = new Item("Pork Patty", 'patty', 10);
-let veg = new Item("Vegan Patty", 'patty', 15); //u shouldnt be a vegan thats why its more expensive >:(
+let veg = new Item("Vegan-Patty", 'patty', 15); //u shouldnt be a vegan thats why its more expensive >:(
 
 patties.push(chicken);
 patties.push(beef);
@@ -226,7 +226,7 @@ function addIngredientSection(obj, section){
 
         const ingredientButton = document.createElement('button');
 
-        ingredientButton.setAttribute("onclick", `addTOBURGER('${ingredient.name.toLowerCase.split(" ")[0]}')`);
+        ingredientButton.setAttribute("onclick", `addTOBURGER('${ingredient.name.toLowerCase().split(" ")[0]}')`);
 
         debugger;
 
