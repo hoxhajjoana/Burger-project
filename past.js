@@ -17,7 +17,6 @@ function changePage(newpage){
 
 }
 
-
 function initializePastBurgers() {
 
     //function to set up the past burgers page
@@ -125,13 +124,22 @@ function favorite(burger){
 
     fav.classList.add('normal');
 
-    fav.innerText = 'Add to favorites';
+    if(burger.favorite){
+        fav.innerText = 'Remove from favorites';
+        fav.classList.add('favorite');
+    }
+    else{
+        fav.innerText = 'Add to favorites';
+    }
 
     fav.onclick = function(){
 
         burger.favorite = (burger.favorite ? false : true);
         textToggle(fav);
         fav.classList.toggle('favorite');
+
+        updateBurgerInLocalStorage(burger);
+
     }
 
     return fav;
@@ -144,4 +152,27 @@ function textToggle(fav) {
     } else {
       fav.innerText = "Add to favorites";
     }
-  }
+}
+
+function updateBurgerInLocalStorage(burger){
+
+    burger.favorite = !burger.favorite;
+
+    
+    let burgers = JSON.parse(localStorage.getItem('burgers'));
+
+    for (let storedBurger of burgers){
+        if(JSON.stringify(burger)===JSON.stringify(storedBurger)){
+
+            storedBurger.favorite = !burger.favorite;
+            debugger;
+            break;
+        }
+    }
+
+    debugger;
+
+    localStorage.setItem('burgers', JSON.stringify(burgers));
+
+}
+
