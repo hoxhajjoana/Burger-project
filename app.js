@@ -140,6 +140,7 @@ const ingSect = [{name: 'patty', value: patties}, {name: 'veggie' , value: items
 
 
 //to change pages
+
 const past = document.querySelector(".past");
 const index = document.querySelector(".index");
 
@@ -161,17 +162,15 @@ add.addEventListener('click', function(){
     ing.classList.remove('hidden');
 }); 
 
-
-
-// FUNCTIONS
-
-
 function changePage(newpage){
 
     //function to switch between the pages
     document.location.href = newpage;
 
 }
+
+// FUNCTIONS
+
 
 function initializeIndex() {
 

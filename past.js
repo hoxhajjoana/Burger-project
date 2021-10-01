@@ -1,3 +1,4 @@
+
 const past = document.querySelector(".past");
 const index = document.querySelector(".index");
 
@@ -17,16 +18,15 @@ function changePage(newpage){
 
 }
 
+
 function initializePastBurgers() {
 
     //function to set up the past burgers page
 
     console.log('past burgers initialized');
+    debugger;
 
-
-    let burgers;
-
-    if (localStorage.getItem('burgers')===null){
+    if (localStorage.getItem('burgers')===null || JSON.parse(localStorage.getItem('burgers')).length === 0){
         thereAreNoBurgers();
     }
     else{
@@ -37,15 +37,20 @@ function initializePastBurgers() {
 
 function thereAreNoBurgers(){
 
+    debugger;
+
     let win = document.querySelector('.rest');
 
     let noBurgers = document.createElement('div');
 
+    noBurgers.classList.add('rest');
     noBurgers.classList.add('no-burger');
+    win.classList.add('flex');
 
-    noBurgers.innerText = "You have not bought a burger before :(";
+    noBurgers.innerHTML = "<h2> You have not bought a burger before :(</h2>";
 
     win.appendChild(noBurgers);
+    debugger;
 
 }
 
@@ -60,7 +65,7 @@ function listBurgers(){
         let burgerRow = document.createElement('div');
         burgerRow.classList.add('flex');
 
-        let funcArray = [draw, listIngredients, favorite];
+        let funcArray = [draw, listIngredients, favorite, deleteBurger];
 
         for (let func of funcArray){
             burgerRow.appendChild(func(burger));
@@ -143,6 +148,39 @@ function favorite(burger){
     }
 
     return fav;
+}
+
+function deleteBurger(burger){
+
+    let del = document.createElement('div');
+
+    debugger;
+
+    del.classList.add('delete');
+    del.innerText = "Delete";
+
+    del.onclick = function () {
+
+        del.parentElement.remove();
+        deleteBurgerFromLocalStorage(burger);
+        if (JSON.parse(localStorage.getItem('burgers')).length === 0){
+
+            thereAreNoBurgers();
+        }
+    }
+    
+    return del;
+
+}
+
+function deleteBurgerFromLocalStorage(burger){
+
+    let burgers = JSON.parse(localStorage.getItem('burgers'));    
+
+    burgers = burgers.filter(item => JSON.stringify(item) !== JSON.stringify(burger));
+        
+    localStorage.setItem('burgers', JSON.stringify(burgers));
+
 }
 
 function textToggle(fav) {
