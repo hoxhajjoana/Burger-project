@@ -64,6 +64,7 @@ function listBurgers(){
 
         let burgerRow = document.createElement('div');
         burgerRow.classList.add('flex');
+        burgerRow.classList.add('fit-pg');
 
         let funcArray = [draw, listIngredients, favorite, deleteBurger];
 
@@ -112,13 +113,18 @@ function listIngredients(burger){
 
     ingredientsContainer.classList.add('list-ing');
 
-    for(let item of burger.ingredients){
+    burger.ingredients.reduceRight((_,item) => {
 
         let ing = document.createElement('div');
         ing.innerText = item.name;
         
         ingredientsContainer.appendChild(ing);
-    }
+    });
+
+    let ing = document.createElement('div');
+    ing.innerHTML = `<br> ${burger.price} TL`;
+    
+    ingredientsContainer.appendChild(ing);
     
     return ingredientsContainer;
 }
