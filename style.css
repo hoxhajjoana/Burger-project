@@ -20,6 +20,13 @@ body {
     justify-content: center;
 }
 
+.rest {
+    background-color: thistle;
+    justify-content: center;
+    width: 100%;
+    margin: 5% auto auto auto;
+}
+
 .nav {
     
     position: absolute;
@@ -328,3 +335,43 @@ body {
     padding: 1%;
     margin: 1%;
 }
+
+.burger-container{
+
+    width: 50%;
+    min-height: 100px;
+    margin:1%;
+
+}
+
+.white{
+    display: none;
+}
+
+.list-ing{
+    min-width: 30%;
+    margin: auto;
+    text-align: center;
+}
+
+.normal {
+    background-color: silver;
+    min-height: fit-content;
+    padding: 2%;
+    margin: auto 1%;
+    width: 20%;
+    text-align: center;
+}
+.normal:hover{
+    cursor: pointer;
+    background-color: springgreen;
+}
+
+.favorite{
+    background-color: yellowgreen;
+}
+.favorite:hover{
+    background-color: tomato;
+}
+
+

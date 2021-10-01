@@ -12,7 +12,7 @@ class Item{
 
 class Burger{
 
-    static maxIngredient = {'patty':1, 'veggie':5, 'sauce':2, 'bun':1};
+    static maxIngredient = {'patty':2, 'veggie':5, 'sauce':2, 'bun':1};
 
     constructor(){
         this.ingredients = [];
@@ -20,9 +20,9 @@ class Burger{
         this.patty = 0;
         this.veggie = 0;
         this.sauce = 0;
-        this.bun = 0;
+        this.bun = 0;////wanted to implement a 
         this.favorite = false;
-        this.addIngredient(new Item('white', 'bun', 5.0));
+        this.addIngredient(new Item('White Bun', 'bun', 5.0));
         
     }
 
@@ -38,7 +38,7 @@ class Burger{
             console.log("succeeded");
             return true;
         }
-        
+        window.alert(`You cannot add more of the ${item.type} type of ingredients. If you have changed your mind about any of the ingredients, click on it on the illustration to remove it.`);
         console.log("failed");
         return false;
     }
@@ -210,9 +210,10 @@ function initializeIndex() {
 
 function checkBurger(burger){
     //function to check if burger is not too much of an abomination
-    if(burger.patty === Burger.maxIngredient['patty'] && burger.veggie <= Burger.maxIngredient['veggie'] && burger.sauce <= Burger.maxIngredient['sauce']){
+    if(burger.patty > 0){
         return true;
     }
+    window.alert("It's not a burger without a patty dude... Add at least one before proceeding.");
     return false;
 }
 
@@ -253,7 +254,7 @@ function addIngredientSection(obj, section){
 
 function addTOBURGER(item){
 
-    bun = document.querySelector('.top-bun');
+    let bun = document.querySelector('.top-bun');
 
     ingredient = document.createElement('div');
 
@@ -284,14 +285,6 @@ function updatePrice(){
 function capitalize(str){
 
     return str.charAt(0).toUpperCase() + str.slice(1);
-
-}
-
-function initializePastBurgers() {
-
-    //function to set up the past burgers page
-
-    console.log('past burgers initialized');
 
 }
 
