@@ -39,6 +39,8 @@ class Burger{
             return true;
         }
         window.alert(`You cannot add more of the ${item.type} type of ingredients. If you have changed your mind about any of the ingredients, click on it on the illustration to remove it.`);
+        
+        //make a popup instead
         console.log("failed");
         return false;
     }
@@ -80,60 +82,43 @@ class Burger{
 
 var burger = new Burger();
 
-const patties=[];
-
-let chicken = new Item("Chicken Patty", 'patty', 7);
-let beef = new Item("Beef Patty", 'patty', 10);
-let meatball = new Item("Meatballs instead of patty", 'patty', 12);
-let pork = new Item("Pork Patty", 'patty', 10);
-let veg = new Item("Vegan-Patty", 'patty', 15); //u shouldnt be a vegan thats why its more expensive >:(
-
-patties.push(chicken);
-patties.push(beef);
-patties.push(meatball);
-patties.push(pork);
-patties.push(veg);
-
-const items = [];
-
-let tomato = new Item("Tomato", 'veggie', 1);
-let lettuce = new Item("Lettuce", 'veggie', 1);
-let pickles = new Item("Pickles", 'veggie', 1);
-let cheese = new Item("Cheese", 'veggie', 2);
-let onions = new Item("Onion", 'veggie', 1);
-let ham = new Item("Ham", 'veggie', 3);
-let bacon = new Item("Bacon", 'veggie', 3);
-let vCheese = new Item("Vegan Cheese", 'veggie', 5);
-let egg = new Item("Egg", 'veggie', 2.5);
-let jalapeno = new Item("Jalapeno pepper", 'veggie', 2);
-
-items.push(tomato);
-items.push(lettuce);
-items.push(pickles);
-items.push(cheese);
-items.push(onions);
-items.push(ham);
-items.push(bacon);
-items.push(vCheese);
-items.push(egg);
-items.push(jalapeno);
-
-const sauces = [];
-
-let mayo = new Item("Mayonnaise", 'sauce', 0.5);
-let ketchup = new Item("Ketchup", 'sauce', 0.5);
-let bbq = new Item("Barbeque", 'sauce', 1);
-let hot = new Item("Hot Sauce", 'sauce', 1);
-let mustard = new Item("Mustard", 'sauce', 1);
-
-sauces.push(mayo);
-sauces.push(ketchup);
-sauces.push(bbq);
-sauces.push(hot);
-sauces.push(mustard);
-
-const ingSect = [{name: 'patty', value: patties}, {name: 'veggie' , value: items}, {name: 'sauce', value: sauces}];
-
+ingSect = [
+    {
+        "name":"patty",
+        "value":[
+            {"name":"Chicken Patty","type":"patty","price":7},
+            {"name":"Beef Patty","type":"patty","price":10},
+            {"name":"Meatballs","type":"patty","price":12},
+            {"name":"Pork Patty","type":"patty","price":10},
+            {"name":"Vegan-Patty","type":"patty","price":15}
+        ]
+    },
+    {
+        "name":"veggie",
+        "value":[
+            {"name":"Tomato","type":"veggie","price":1},
+            {"name":"Lettuce","type":"veggie","price":1},
+            {"name":"Pickles","type":"veggie","price":1},
+            {"name":"Cheese","type":"veggie","price":2},
+            {"name":"Onion","type":"veggie","price":1},
+            {"name":"Ham","type":"veggie","price":3},
+            {"name":"Bacon","type":"veggie","price":3},
+            {"name":"Vegan Cheese","type":"veggie","price":5},
+            {"name":"Egg","type":"veggie","price":2.5},
+            {"name":"Jalapeno pepper","type":"veggie","price":2}
+        ]
+    },
+    {
+        "name":"sauce",
+        "value":[
+            {"name":"Mayonnaise","type":"sauce","price":0.5},
+            {"name":"Ketchup","type":"sauce","price":0.5},
+            {"name":"Barbeque","type":"sauce","price":1},
+            {"name":"Hot Sauce","type":"sauce","price":1},
+            {"name":"Mustard","type":"sauce","price":1}
+        ]
+    }
+]
 
 
 // EVENT LISTENERS
@@ -156,10 +141,12 @@ index.addEventListener("click", function(){
 const add = document.querySelector('.add-btn');
 const ing = document.querySelector('.add-bur');
 
-add.addEventListener('click', function(){
+add.addEventListener('click', function(){//to remove the initial screen and go to the one where you can make your burger
     
     add.parentElement.classList.add('hidden');
     ing.classList.remove('hidden');
+
+    initializeIndex();
 }); 
 
 function changePage(newpage){
@@ -168,6 +155,8 @@ function changePage(newpage){
     document.location.href = newpage;
 
 }
+
+
 
 // FUNCTIONS
 
@@ -223,7 +212,6 @@ function addIngredientSection(obj, section){
 
     htmlSection.classList.add(obj.name);  //adding a class to the type, in case of modifying the style 
 
-
     htmlSection.classList.add('ingredients');
     htmlSection.innerText = capitalize(obj.name);
 
@@ -253,6 +241,8 @@ function addIngredientSection(obj, section){
 
 function addTOBURGER(item){
 
+    //function to add to visual burger
+
     let bun = document.querySelector('.top-bun');
 
     ingredient = document.createElement('div');
@@ -274,6 +264,8 @@ function addTOBURGER(item){
 }
 
 function updatePrice(){
+
+    //function to update the price of the burger on the page
 
     const priceDiv = document.querySelector('.price');
 

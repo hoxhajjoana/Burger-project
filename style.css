@@ -136,6 +136,9 @@ body {
     margin: 2rem auto 2rem auto;
     background-color: rgb(247, 198, 139);
 }
+.tomato-red{
+    background-color: rgb(247, 107, 107);
+}
 
 .tomato {
     border: solid 0.15rem rgb(211, 2, 2);
@@ -260,7 +263,9 @@ body {
     margin: 0.8rem auto 0.8rem auto;
     background-color: rgb(116, 37, 50);
 }
-
+.w-50{
+    width:50%;
+}
 .pork{
 
     border: solid 0.15rem rgb(114, 2, 67);

@@ -1,3 +1,5 @@
+// duplicate code because I could not make import/export work without https
+
 
 const past = document.querySelector(".past");
 const index = document.querySelector(".index");
@@ -17,6 +19,11 @@ function changePage(newpage){
     document.location.href = newpage;
 
 }
+//end of duplicate code from app.js
+
+
+
+//FUNCTIONS
 
 
 function initializePastBurgers() {
@@ -37,7 +44,7 @@ function initializePastBurgers() {
 
 function thereAreNoBurgers(){
 
-    debugger;
+    //function to set up the page if there are no burgers saved in local storage
 
     let win = document.querySelector('.rest');
 
@@ -56,6 +63,8 @@ function thereAreNoBurgers(){
 
 function listBurgers(){
 
+    //function to list the burgers that are saved in local storage
+
     const burgers = JSON.parse(localStorage.getItem("burgers"));
     
     for (let burger of burgers){
@@ -66,7 +75,7 @@ function listBurgers(){
         burgerRow.classList.add('flex');
         burgerRow.classList.add('fit-pg');
 
-        let funcArray = [draw, listIngredients, favorite, deleteBurger];
+        let funcArray = [draw, listIngredients, favorite, deleteBurger];/// if any other functions are added, just add to this array to call it later
 
         for (let func of funcArray){
             burgerRow.appendChild(func(burger));
@@ -79,11 +88,13 @@ function listBurgers(){
 
 function draw(burger){
 
+    //function to build the burger visually
+
     let burgerContainer = document.createElement('div');
 
     burgerContainer.classList.add('burger-container');
 
-    let topBun = document.createElement('div');
+    let topBun = document.createElement('div'); //need to fix this so that there is no need for the repeated code
     topBun.classList.add('bun');
     topBun.classList.add('top-bun');
 
@@ -109,20 +120,24 @@ function draw(burger){
 
 function listIngredients(burger){
 
+    //function to list the burger ingredients
+
     let ingredientsContainer = document.createElement('div');
 
     ingredientsContainer.classList.add('list-ing');
 
-    burger.ingredients.reduceRight((_,item) => {
+    burger.ingredients.reduceRight((_,item) => { ///arrow function to list ingredients in the same order as they are added
 
-        let ing = document.createElement('div');
-        ing.innerText = item.name;
-        
-        ingredientsContainer.appendChild(ing);
-    });
+            let ing = document.createElement('div');
+            ing.innerText = item.name;
+            
+            ingredientsContainer.appendChild(ing);
+        }, null);
+
 
     let ing = document.createElement('div');
-    ing.innerHTML = `<br> ${burger.price} TL`;
+
+    ing.innerHTML = `<br> ${burger.price} TL`;//listing price too
     
     ingredientsContainer.appendChild(ing);
     
@@ -130,6 +145,8 @@ function listIngredients(burger){
 }
 
 function favorite(burger){
+
+    //function to make a button to add a burger to favorites
 
     let fav =  document.createElement('div');
 
@@ -143,14 +160,13 @@ function favorite(burger){
         fav.innerText = 'Add to favorites';
     }
 
-    fav.onclick = function(){
+    fav.onclick = function(){ //onclick function to remove or add it to favorites
 
         burger.favorite = (burger.favorite ? false : true);
         textToggle(fav);
         fav.classList.toggle('favorite');
 
-        updateBurgerInLocalStorage(burger);
-
+        updateBurgerInLocalStorage(burger);//update the burger in local storage
     }
 
     return fav;
@@ -158,14 +174,14 @@ function favorite(burger){
 
 function deleteBurger(burger){
 
-    let del = document.createElement('div');
+    //function to delete burger from the list of saved burgers
 
-    debugger;
+    let del = document.createElement('div');
 
     del.classList.add('delete');
     del.innerText = "Delete";
 
-    del.onclick = function () {
+    del.onclick = function () {//onlcick function to delete and update the local storage
 
         del.parentElement.remove();
         deleteBurgerFromLocalStorage(burger);
@@ -181,6 +197,8 @@ function deleteBurger(burger){
 
 function deleteBurgerFromLocalStorage(burger){
 
+    //function to delete burger from local storage
+
     let burgers = JSON.parse(localStorage.getItem('burgers'));    
 
     burgers = burgers.filter(item => JSON.stringify(item) !== JSON.stringify(burger));
@@ -191,18 +209,22 @@ function deleteBurgerFromLocalStorage(burger){
 
 function textToggle(fav) {
 
+    //function to toggle the text in the favorite button
+
     if (fav.innerText === 'Add to favorites') {
       fav.innerText = "Remove from favorites";
     } else {
       fav.innerText = "Add to favorites";
     }
+
 }
 
 function updateBurgerInLocalStorage(burger){
 
+    //function to update burger in the local storage
+
     burger.favorite = !burger.favorite;
 
-    
     let burgers = JSON.parse(localStorage.getItem('burgers'));
 
     for (let storedBurger of burgers){
@@ -213,8 +235,6 @@ function updateBurgerInLocalStorage(burger){
             break;
         }
     }
-
-    debugger;
 
     localStorage.setItem('burgers', JSON.stringify(burgers));
 
