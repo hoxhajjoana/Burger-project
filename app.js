@@ -49,6 +49,8 @@ class Burger{
 
         console.log('Trying to remove '+ item.name);
         
+        //a = this.ingredients.find((_,i) => i.name === item.name)
+        
         for(let i = 0; i < this.ingredients.length; i++) {
             
             if(this.ingredients[i].name === item.name) {
@@ -59,7 +61,6 @@ class Burger{
 
         this.price -= item.price;
         this.adjustIngredients(item.type, false);
-        debugger;
     }
 
     adjustIngredients(type, action){
@@ -84,7 +85,7 @@ var burger = new Burger();
 
 ingSect = [
     {
-        "name":"patty",
+        "name":"patties",
         "value":[
             {"name":"Chicken Patty","type":"patty","price":7},
             {"name":"Beef Patty","type":"patty","price":10},
@@ -94,7 +95,7 @@ ingSect = [
         ]
     },
     {
-        "name":"veggie",
+        "name":"veggies",
         "value":[
             {"name":"Tomato","type":"veggie","price":1},
             {"name":"Lettuce","type":"veggie","price":1},
@@ -109,7 +110,7 @@ ingSect = [
         ]
     },
     {
-        "name":"sauce",
+        "name":"sauces",
         "value":[
             {"name":"Mayonnaise","type":"sauce","price":0.5},
             {"name":"Ketchup","type":"sauce","price":0.5},
@@ -229,7 +230,7 @@ function addIngredientSection(obj, section){
         };
 
         ingredientButton.classList.add('pg-btn');
-        ingredientButton.classList.add('margin');
+        ingredientButton.classList.add('ingredients');
         ingredientButton.innerText = ingredient.name + " (" + ingredient.price + "tl)";
 
         htmlSection.appendChild(ingredientButton);
@@ -248,6 +249,8 @@ function addTOBURGER(item){
     ingredient = document.createElement('div');
 
     ingredient.classList.add(item.name.toLowerCase().split(" ")[0]);
+    ingredient.classList.add(item.type);
+
     ingredient.classList.add('ing');    
 
     bun.parentNode.insertBefore(ingredient, bun.nextSibling);

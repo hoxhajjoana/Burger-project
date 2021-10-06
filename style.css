@@ -1,5 +1,4 @@
 body {
-  
     background-color: bisque;
     min-height: 100%;
     margin: 0;
@@ -8,35 +7,13 @@ body {
     max-height: fit-content;
 }
 
-.center {
-
+.nav, .center{
     position: absolute;
-    top: 10%;
-    right:0;
-    margin: auto;
-    width: 100%;
-    min-height: 90%;
-    background-color:aliceblue;
-    justify-content: center;
-}
-
-.fit-pg{
-    
-    position: relative;
-    right:0;
-    top: 10%;
-}
-
-.rest {
-
-    background-color: thistle;
+    right: 0;
 }
 
 .nav {
-    
-    position: absolute;
     top: 0;
-    right:0;
     min-height: 10%;
     width: 98%;
     margin-left: 1%;
@@ -44,8 +21,20 @@ body {
     justify-content: right;
 }
 
-.pg-btn {
+.center {
+    top: 10%;
+    margin: auto;
+    width: 100%;
+    min-height: 90%;
+    background-color:aliceblue;
+    justify-content: center;
+}
 
+.rest {
+    background-color: thistle;
+}
+
+.pg-btn {
     padding: 1%;
     margin-top: auto;
     margin-bottom: auto;
@@ -55,43 +44,23 @@ body {
 }
 
 .pg-btn:hover{
-
     background-color:darkcyan;
     cursor: pointer;
 }
 
 .fin-btn{
     position: absolute;
-    bottom: 5rem;
-    right: 5rem;
+    bottom: 5%;
+    right: 5%;
 }
 
-.add-bur{
-
-    width: 100%;
-}
-
-.cho-ing{
-
-    float: left;
+.cho-ing, .fin-bur{
     width: 50%;
     min-width: 200px;
     text-align: center;
-
 }
-
-.fin-bur{
-
-    float: left;
-    width: 50%;
-    min-width: 200px;
-    text-align: center;
-
-}
-
 
 .flex {
-
     display: flex;
     align-items: center;
 }
@@ -100,18 +69,33 @@ body {
     display: none;
 }
 
-.margin{
+.ingredients{
     margin:1%;
 }
 
-.ingredients {
-
-    margin: 1%;
+.patties, .veggies, .sauces {
+    padding: 2%;
 }
 
 .patty, .veggie, .sauce {
-    
-    padding: 2%;
+    border-style: solid;
+    border-width: 0.15rem;
+    border-radius: 1rem;
+    width: 50%;
+    height: 1.5rem;
+}
+
+.patty{
+    height: 2rem;
+}
+
+.sauce{
+    width: 60%;
+    height: 0.5rem;
+}
+
+.ing, .ing-past{
+    margin: 0.3rem auto;
 }
 
 .ing:hover{
@@ -133,205 +117,142 @@ body {
     border: solid 0.15rem rgb(248, 175, 85);
     width: 60%;
     height: 4rem;
-    margin: 2rem auto 2rem auto;
+    margin: 1rem auto;
     background-color: rgb(247, 198, 139);
 }
+
+.burger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .tomato-red{
     background-color: rgb(247, 107, 107);
 }
 
 .tomato {
-    border: solid 0.15rem rgb(211, 2, 2);
-    border-radius: 1rem;
-    width: 50%;
-    height: 1.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(211, 2, 2);
     background-color: rgb(247, 107, 107);
 }
 
 .egg {
-    border: solid 0.15rem rgb(255, 196, 1);
-    border-radius: 1rem;
-    width: 50%;
-    height: 1.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(255, 196, 1);
     background-color: rgb(250, 249, 240);
-
 }
 
 .onion {
-    border: solid 0.15rem rgb(233, 82, 247);
-    border-radius: 1rem;
-    width: 50%;
-    height: 1.1rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(233, 82, 247);
     background-color: rgb(238, 227, 238);
-
+    height: 1.1rem;
 }
 
 .lettuce {
-    border: dashed 0.15rem rgb(85, 211, 2);
-    border-radius: 1rem;
-    width: 55%;
-    height: 1rem;
-    margin: 0.8rem auto 0.8rem auto;
     background-color: rgb(157, 250, 164);
+    border-color: rgb(85, 211, 2);
+    height: 1rem;
+    width: 55%;
+    border-style: dashed;
+}
+
+.ham, .bacon{
+    height: 0.8rem;
 }
 
 .ham {
-
-    border: solid 0.12rem rgb(211, 2, 65);
-    border-radius: 1rem;
-    width: 50%;
-    height: 0.8rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(211, 2, 65);
     background-color: rgb(250, 157, 193);
+    border-width: 0.12rem;
 }
 
 .bacon {
-
-    border: solid 0.15rem rgb(194, 7, 22);
-    border-radius: 1rem;
-    width: 50%;
-    height: 0.8rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(194, 7, 22);
     background-color: rgb(247, 113, 103);
 }
 
-
-.pickles {
-    border: dotted 0.15rem rgb(42, 102, 2);
-    border-radius: 1rem;
+.pickles, .jalapeno{
     width: 15%;
     height: 1rem;
-    margin: 0.8rem auto 0.8rem auto;
+}
+
+.pickles {
+    border-color: rgb(42, 102, 2);
     background-color: rgb(0, 180, 15);
 }
 
 .jalapeno {
-    border: dashed 0.15rem rgb(224, 250, 207);
-    border-radius: 1rem;
-    width: 15%;
-    height: 1rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(224, 250, 207);
     background-color: rgb(26, 116, 34);
+    border-style: dashed;
 }
 
-.cheese {
-    border: solid 0.15rem rgb(231, 133, 4);
+.cheese, .vegan{
     border-radius: 0.5rem;
     width: 60%;
     height: 0.6rem;
-    margin: 0.8rem auto 0.8rem auto;
+}
+
+.cheese {
+    border-color: rgb(231, 133, 4);
     background-color: rgb(253, 224, 93);
 }
 
 .vegan {
-    border: solid 0.15rem rgb(252, 155, 27);
-    border-radius: 0.5rem;
-    width: 60%;
-    height: 0.6rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(252, 155, 27);
     background-color: rgb(255, 232, 132);
 }
 
 .chicken{
-    border: solid 0.15rem rgb(192, 110, 2);
-    border-radius: 1rem;
-    width: 50%;
-    height: 2rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(192, 110, 2);
     background-color: rgb(255, 166, 0);
-
 }
 
 .beef{
-    border: solid 0.15rem rgb(114, 2, 39);
-    border-radius: 1rem;
-    width: 50%;
-    height: 2rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(114, 2, 39);
     background-color: rgb(190, 37, 63);
 }
 
 .meatballs{
-
-    border: solid 0.15rem rgb(80, 1, 27);
-    border-radius: 40%;
-    width: 50%;
-    height: 2.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(80, 1, 27);
     background-color: rgb(116, 37, 50);
+    height: 2.5rem;
+    border-radius: 40%;
 }
-.w-50{
-    width:50%;
-}
+
 .pork{
-
-    border: solid 0.15rem rgb(114, 2, 67);
-    border-radius: 1rem;
-    width: 50%;
-    height: 2rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(114, 2, 67);
     background-color: rgb(190, 37, 108);
-
 }
 
 .vegan-patty{
-    border: solid 0.15rem rgb(83, 105, 2);
-    border-radius: 1rem;
-    width: 50%;
-    height: 2rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(83, 105, 2);
     background-color: rgb(134, 148, 9);
 }
 
 .mayonnaise{
-    border: solid 0.15rem rgb(255, 236, 176);
-    border-radius: 1rem;
-    width: 60%;
-    height: 0.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(255, 236, 176);
     background-color: rgb(248, 247, 210);
 }
 
 .ketchup{
-    border: solid 0.15rem rgb(211, 2, 2);
-    border-radius: 1rem;
-    width: 60%;
-    height: 0.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(211, 2, 2);
     background-color: rgb(247, 107, 107);
 }
 
 .barbeque{
-    border: solid 0.15rem rgb(145, 1, 32);
-    border-radius: 1rem;
-    width: 60%;
-    height: 0.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(145, 1, 32);
     background-color: rgb(224, 56, 70);
-
 }
 
 .hot{
-    border: solid 0.15rem rgb(255, 0, 0);
-    border-radius: 1rem;
-    width: 60%;
-    height: 0.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(255, 0, 0);
     background-color: rgb(255, 72, 72);
-
 }
 
 .mustard{
-    border: solid 0.15rem rgb(250, 199, 30);
-    border-radius: 1rem;
-    width: 60%;
-    height: 0.5rem;
-    margin: 0.8rem auto 0.8rem auto;
+    border-color: rgb(250, 199, 30);
     background-color: rgb(255, 247, 0);
-
 }
 
 .error {
@@ -345,14 +266,11 @@ body {
 }
 
 .burger-container{
-
     width: 40%;
-    min-height: 100px;
     margin:1%;
-
 }
 
-.white{
+.white{/*stupid fix*/
     display: none;
 }
 
@@ -362,29 +280,27 @@ body {
     text-align: center;
 }
     
-
 .del-burger{
     width: 10%;
     margin: auto;
     text-align: center;
 }
 
-.normal {
-    background-color: silver;
+.normal, .delete{
     min-height: fit-content;
     padding: 2%;
     margin: auto 1%;
-    width: 20%;
     text-align: center;
+}
+
+.normal {
+    background-color: silver;
+    width: 20%;
 }
 
 .delete{
     background-color :wheat;
-    min-height: fit-content;
-    padding: 2%;
-    margin: auto 1%;
     width: 10%;
-    text-align: center;
 }
 
 .delete:hover{

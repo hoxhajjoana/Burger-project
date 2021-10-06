@@ -31,7 +31,6 @@ function initializePastBurgers() {
     //function to set up the past burgers page
 
     console.log('past burgers initialized');
-    debugger;
 
     if (localStorage.getItem('burgers')===null || JSON.parse(localStorage.getItem('burgers')).length === 0){
         thereAreNoBurgers();
@@ -57,7 +56,6 @@ function thereAreNoBurgers(){
     noBurgers.innerHTML = "<h2> You have not bought a burger before :(</h2>";
 
     win.appendChild(noBurgers);
-    debugger;
 
 }
 
@@ -73,7 +71,6 @@ function listBurgers(){
 
         let burgerRow = document.createElement('div');
         burgerRow.classList.add('flex');
-        burgerRow.classList.add('fit-pg');
 
         let funcArray = [draw, listIngredients, favorite, deleteBurger];/// if any other functions are added, just add to this array to call it later
 
@@ -97,10 +94,13 @@ function draw(burger){
     let topBun = document.createElement('div'); //need to fix this so that there is no need for the repeated code
     topBun.classList.add('bun');
     topBun.classList.add('top-bun');
+    topBun.classList.add('ing-past');
 
     let bottomBun = document.createElement('div');
     bottomBun.classList.add('bun');
     bottomBun.classList.add('bottom-bun');
+    bottomBun.classList.add('ing-past');
+
 
     burgerContainer.appendChild(topBun);
     burgerContainer.appendChild(bottomBun);
@@ -110,6 +110,8 @@ function draw(burger){
         ingredient = document.createElement('div');
 
         ingredient.classList.add(item.name.toLowerCase().split(" ")[0]);
+        ingredient.classList.add(item.type);
+        ingredient.classList.add("ing-past");
         topBun.parentNode.insertBefore(ingredient, topBun.nextSibling);
 
     }
@@ -231,7 +233,6 @@ function updateBurgerInLocalStorage(burger){
         if(JSON.stringify(burger)===JSON.stringify(storedBurger)){
 
             storedBurger.favorite = !burger.favorite;
-            debugger;
             break;
         }
     }
