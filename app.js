@@ -38,7 +38,7 @@ class Burger{
             console.log("succeeded");
             return true;
         }
-        window.alert(`You cannot add more of the ${item.type} type of ingredients. If you have changed your mind about any of the ingredients, click on it on the illustration to remove it.`);
+        createModal(`You cannot add more of the ${item.type} type of ingredients. If you have changed your mind about any of the ingredients, click on it on the illustration to remove it.`);
         
         //make a popup instead
         console.log("failed");
@@ -182,10 +182,6 @@ function initializeIndex() {
     const finishButton = document.querySelector('.fin-btn');
     finishButton.onclick = function(){
 
-        if(this.classList.contains('error')){
-            this.classList.remove('error');
-        }
-
         if(checkBurger(burger)){
             addBurgerToLocalStorage(burger);
             changePage('./index.html');
@@ -202,8 +198,44 @@ function checkBurger(burger){
     if(burger.patty > 0){
         return true;
     }
-    window.alert("It's not a burger without a patty dude... Add at least one before proceeding.");
+
+    createModal("It's not a burger without a patty dude... Add at least one before proceeding.");
+
     return false;
+}
+
+function createModal(string){
+
+    let body = document.getElementsByTagName("body")[0];
+
+    let modal = document.createElement("div");
+
+    modal.classList.add("modal");
+
+    let modalContent = document.createElement("div");
+
+    modalContent.classList.add("modal-content");
+    
+    modal.appendChild(modalContent);
+
+    let closeButton = document.createElement("span");
+
+    closeButton.classList.add("close");
+    closeButton.innerHTML = '&times';
+
+    closeButton.onclick = function(){
+        this.parentElement.parentElement.remove();
+    }
+
+    modalContent.appendChild(closeButton);
+
+    let textContent = document.createElement("p");
+
+    modalContent.appendChild(textContent);
+
+    textContent.innerText = string;
+
+    body.appendChild(modal);
 }
 
 
