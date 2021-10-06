@@ -7,7 +7,7 @@ body {
     max-height: fit-content;
 }
 
-.nav, .center{
+.nav, .center, .fin-btn{
     position: absolute;
     right: 0;
 }
@@ -49,7 +49,6 @@ body {
 }
 
 .fin-btn{
-    position: absolute;
     bottom: 5%;
     right: 5%;
 }
@@ -77,11 +76,13 @@ body {
     padding: 2%;
 }
 
-.patty, .veggie, .sauce {
-    border-style: solid;
-    border-width: 0.15rem;
+.patty, .veggie, .sauce, .bun {
+    border: solid 0.15rem transparent;
     border-radius: 1rem;
     width: 50%;
+}
+
+.veggie{
     height: 1.5rem;
 }
 
@@ -103,22 +104,19 @@ body {
 }
 
 .top-bun{
-
     border-radius: 150% 150% 10% 10%;
 }
 
 .bottom-bun{
-    
     border-radius: 10% 10% 150% 150%;
 }
 
 .bun {
-    
-    border: solid 0.15rem rgb(248, 175, 85);
-    width: 60%;
-    height: 4rem;
-    margin: 1rem auto;
+    border-color: rgb(248, 175, 85);
     background-color: rgb(247, 198, 139);
+    height: 4rem;
+    width: 60%;
+    margin: 1rem auto;
 }
 
 .burger{
